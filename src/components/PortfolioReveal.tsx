@@ -49,7 +49,7 @@ function RevealContent() {
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.3, ease: "easeIn" }}
                 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
-                style={{ fontFamily: "var(--font-logo)" }}
+                style={{ fontFamily: "system-ui, sans-serif" }}
              >
                 &lt;Klyrhon /&gt;
              </motion.span>
