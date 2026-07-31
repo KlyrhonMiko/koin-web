@@ -38,14 +38,14 @@ export default function Hero() {
   const smallCardY = useTransform(smoothY, v => v * -1.2);
 
   return (
-    <section className="relative min-h-[100dvh] pt-24 pb-12 overflow-hidden flex items-center bg-background">
+    <section className="relative min-h-[100dvh] pt-20 sm:pt-24 pb-12 overflow-hidden flex items-center bg-background">
       {/* Dynamic Background */}
       <div className="absolute inset-0 w-full h-full -z-10 overflow-hidden">
         <div className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] bg-primary/10 rounded-full blur-[120px] mix-blend-normal opacity-70 animate-pulse" style={{ animationDuration: '4s' }} />
         <div className="absolute bottom-[10%] left-[10%] w-[30vw] h-[30vw] bg-accent/10 rounded-full blur-[100px] mix-blend-normal opacity-70" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16 lg:gap-8 items-center relative z-10">
         
         {/* Left Column: Typography */}
         <div className="col-span-1 lg:col-span-6 flex flex-col items-start text-left pt-10 lg:pt-0 z-20">
@@ -55,7 +55,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-foreground mb-6"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.05] text-foreground mb-4 sm:mb-6"
           >
             Master your <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent inline-block pb-2 pr-4">financial flow.</span>
@@ -65,7 +65,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-lg md:text-xl text-muted max-w-xl leading-relaxed mb-10"
+            className="text-base sm:text-lg md:text-xl text-muted max-w-xl leading-relaxed mb-8 sm:mb-10"
           >
             Experience a new standard of personal finance tracking. 
             Built with Flutter for unparalleled performance and a design that feels like magic.
@@ -79,7 +79,7 @@ export default function Hero() {
           >
             <a
               href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-foreground px-8 py-4 text-sm font-semibold text-background transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 w-full sm:w-auto"
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-foreground px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-background transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 w-full sm:w-auto"
             >
               <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
@@ -91,7 +91,7 @@ export default function Hero() {
               href="https://github.com/KlyrhonMiko/koin"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface/50 px-8 py-4 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:border-border-hover hover:bg-surface-elevated hover:shadow-lg w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface/50 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:border-border-hover hover:bg-surface-elevated hover:shadow-lg w-full sm:w-auto"
             >
               Explore Source
               <ChevronRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -100,7 +100,7 @@ export default function Hero() {
         </div>
 
         {/* Right Column: Interactive Mockup Composition */}
-        <div className="col-span-1 lg:col-span-6 relative h-[450px] sm:h-[500px] w-full flex items-center justify-center lg:justify-end" style={{ perspective: '1200px' }}>
+        <div className="col-span-1 lg:col-span-6 relative h-[380px] sm:h-[500px] w-full flex items-center justify-center lg:justify-end scale-[0.85] sm:scale-100 origin-top sm:origin-center mt-4 sm:mt-0" style={{ perspective: '1200px' }}>
           
           {/* Main Card */}
           <motion.div 
@@ -113,7 +113,7 @@ export default function Hero() {
               rotateX: mainCardRotateX,
               rotateY: mainCardRotateY
             }}
-            className="absolute z-10 w-[90%] sm:w-[360px] rounded-[32px] bg-surface/80 backdrop-blur-xl border border-border shadow-2xl p-6 md:p-8 dark:bg-surface-elevated/40 overflow-hidden"
+            className="absolute z-10 w-[90%] sm:w-[360px] max-w-[360px] rounded-[32px] bg-surface/80 backdrop-blur-xl border border-border shadow-2xl p-6 md:p-8 dark:bg-surface-elevated/40 overflow-hidden"
           >
             {/* Glossy highlight */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-30 pointer-events-none rounded-[32px]" />
