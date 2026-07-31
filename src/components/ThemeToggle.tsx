@@ -58,30 +58,36 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       )
     );
 
+    const style = document.createElement("style");
+    style.innerHTML = `
+      ::view-transition-new(root) {
+        animation: theme-reveal 400ms ease-in-out !important;
+        z-index: 100 !important;
+      }
+      ::view-transition-old(root) {
+        z-index: -1 !important;
+      }
+      @keyframes theme-reveal {
+        from {
+          clip-path: circle(0px at ${x}px ${y}px);
+          -webkit-clip-path: circle(0px at ${x}px ${y}px);
+        }
+        to {
+          clip-path: circle(${endRadius}px at ${x}px ${y}px);
+          -webkit-clip-path: circle(${endRadius}px at ${x}px ${y}px);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
     const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(isDark ? "light" : "dark");
       });
     });
 
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        [
-          { 
-            clipPath: `circle(0px at ${x}px ${y}px)`,
-            webkitClipPath: `circle(0px at ${x}px ${y}px)`
-          },
-          { 
-            clipPath: `circle(${endRadius}px at ${x}px ${y}px)`,
-            webkitClipPath: `circle(${endRadius}px at ${x}px ${y}px)`
-          }
-        ],
-        {
-          duration: 400,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
+    transition.finished.then(() => {
+      style.remove();
     });
   };
 
