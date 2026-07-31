@@ -46,39 +46,17 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     x = Math.round(x);
     y = Math.round(y);
 
-    if (x <= 5 && y <= 5) {
+    if (x < 50 && y < 50) {
       x = Math.round(window.innerWidth - 40);
       y = 40;
     }
 
-    const endRadius = Math.ceil(
-      Math.hypot(
-        Math.max(x, window.innerWidth - x),
-        Math.max(y, window.innerHeight - y)
-      )
-    );
+    const xPercent = (x / window.innerWidth) * 100;
+    const yPercent = (y / window.innerHeight) * 100;
 
-    const style = document.createElement("style");
-    style.innerHTML = `
-      ::view-transition-new(root) {
-        animation: theme-reveal 400ms ease-in-out !important;
-        z-index: 100 !important;
-      }
-      ::view-transition-old(root) {
-        z-index: -1 !important;
-      }
-      @keyframes theme-reveal {
-        from {
-          clip-path: circle(0px at ${x}px ${y}px);
-          -webkit-clip-path: circle(0px at ${x}px ${y}px);
-        }
-        to {
-          clip-path: circle(${endRadius}px at ${x}px ${y}px);
-          -webkit-clip-path: circle(${endRadius}px at ${x}px ${y}px);
-        }
-      }
-    `;
-    document.head.appendChild(style);
+    document.documentElement.style.setProperty("--theme-x", `${xPercent}%`);
+    document.documentElement.style.setProperty("--theme-y", `${yPercent}%`);
+    document.documentElement.setAttribute("data-theme-transition", "true");
 
     const transition = document.startViewTransition(() => {
       flushSync(() => {
@@ -87,7 +65,9 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     });
 
     transition.finished.then(() => {
-      style.remove();
+      document.documentElement.removeAttribute("data-theme-transition");
+      document.documentElement.style.removeProperty("--theme-x");
+      document.documentElement.style.removeProperty("--theme-y");
     });
   };
 
