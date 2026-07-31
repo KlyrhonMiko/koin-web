@@ -29,35 +29,45 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const x = event.clientX;
-    const y = event.clientY;
-    const endRadius = Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
-    );
+    if (!document.startViewTransition) {
+      setTheme(isDark ? "light" : "dark");
+      return;
+    }
 
-    const transition = (document as any).startViewTransition(() => {
+    let x = event.clientX;
+    let y = event.clientY;
+
+    if (!x || !y || (x === 0 && y === 0)) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+
+    x = Math.round(x);
+    y = Math.round(y);
+
+    if (x < 50 && y < 50) {
+      x = Math.round(window.innerWidth - 40);
+      y = 40;
+    }
+
+    const xPercent = (x / window.innerWidth) * 100;
+    const yPercent = (y / window.innerHeight) * 100;
+
+    document.documentElement.style.setProperty("--theme-x", `${xPercent}%`);
+    document.documentElement.style.setProperty("--theme-y", `${yPercent}%`);
+    document.documentElement.setAttribute("data-theme-transition", "true");
+
+    const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(isDark ? "light" : "dark");
       });
     });
 
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ];
-      
-      document.documentElement.animate(
-        {
-          clipPath: clipPath,
-        },
-        {
-          duration: 400,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
+    transition.finished.then(() => {
+      document.documentElement.removeAttribute("data-theme-transition");
+      document.documentElement.style.removeProperty("--theme-x");
+      document.documentElement.style.removeProperty("--theme-y");
     });
   };
 
