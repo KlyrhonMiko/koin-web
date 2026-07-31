@@ -63,7 +63,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 md:py-32 px-6 relative bg-background">
+    <section id="features" className="py-16 sm:py-24 md:py-32 px-6 relative bg-background">
       
       {/* Ambient background glows wrapper to prevent breaking sticky layout */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -72,7 +72,7 @@ export default function Features() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-24">
           
           {/* Left Column (Sticky Header) */}
           <div className="lg:w-1/3">
@@ -103,19 +103,19 @@ export default function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: "easeOut" }}
-                className="group relative flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 py-10 border-b border-border/50 last:border-0 hover:bg-surface-elevated/40 transition-colors duration-500 rounded-3xl sm:-mx-6 sm:px-6"
+                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-6 sm:py-10 border-b border-border/50 last:border-0 hover:bg-surface-elevated/40 transition-colors duration-500 rounded-3xl sm:-mx-6 sm:px-6"
               >
                 {/* Subtle Hover Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
                 
                 {/* Icon Container */}
-                <div className="relative z-10 shrink-0 w-16 h-16 rounded-2xl glass flex items-center justify-center text-muted group-hover:text-primary group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(46,217,155,0.2)] group-hover:border-primary/20 transition-all duration-500">
+                <div className="relative z-10 shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-muted group-hover:text-primary group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(46,217,155,0.2)] group-hover:border-primary/20 transition-all duration-500">
                   {feature.icon}
                 </div>
                 
                 {/* Text Content */}
                 <div className="relative z-10 flex-1">
-                  <h3 className="text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                     {feature.title}
                   </h3>
                   <p className="text-muted text-base sm:text-lg leading-relaxed">

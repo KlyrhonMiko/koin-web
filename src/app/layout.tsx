@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const outfit = Outfit({
   variable: "--font-geist-sans", // map it to the variable used in globals.css
@@ -24,11 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased`}>
-        <SmoothScrolling>
-          {children}
-        </SmoothScrolling>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Github, Download } from 'lucide-react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const { scrollY } = useScroll();
@@ -31,16 +32,31 @@ export default function Navbar() {
           <span className="text-xl font-bold tracking-tighter text-foreground font-logo">Koin</span>
         </div>
         
-        <div className="flex items-center gap-3 sm:gap-6">
-          <Link href="#features" className="text-xs font-semibold uppercase tracking-widest text-muted hover:text-foreground transition-colors hidden sm:block">
+        {/* Right Side Controls */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Main Links */}
+          <Link href="#features" className="text-xs font-semibold uppercase tracking-widest text-muted hover:text-foreground transition-colors hidden sm:block mr-2">
             Features
           </Link>
-          <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-foreground transition-all duration-300 hover:scale-110 hidden sm:block">
-            <Github className="w-4 h-4" />
-          </a>
+          
+          {/* Desktop Utilities Pill */}
+          <div className="hidden sm:flex items-center rounded-full p-1 border border-border/60 dark:border-white/[0.08] bg-surface-elevated/30">
+            <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="flex h-8 w-8 items-center justify-center rounded-full text-muted hover:text-foreground hover:bg-surface dark:hover:bg-white/10 transition-colors duration-200">
+              <Github className="w-[18px] h-[18px]" />
+            </a>
+            <div className="w-[1px] h-4 bg-border/80 dark:bg-white/10 mx-1"></div>
+            <ThemeToggle className="group relative flex h-8 w-8 items-center justify-center rounded-full text-muted hover:text-foreground transition-colors hover:bg-surface dark:hover:bg-white/10 focus:outline-none active:scale-95 cursor-pointer" />
+          </div>
+
+          {/* Mobile Theme Toggle */}
+          <div className="sm:hidden flex">
+            <ThemeToggle className="group relative flex h-8 w-8 items-center justify-center rounded-full text-muted hover:text-foreground transition-colors focus:outline-none active:scale-95 cursor-pointer bg-surface-elevated/50 border border-border/60" />
+          </div>
+
+          {/* CTA */}
           <a 
             href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk" 
-            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-5 py-2.5 text-xs font-semibold text-background transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
+            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-semibold text-background transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
           >
             <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
