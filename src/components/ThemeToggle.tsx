@@ -51,24 +51,22 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       )
     );
 
+    document.documentElement.style.setProperty("--theme-x", `${x}px`);
+    document.documentElement.style.setProperty("--theme-y", `${y}px`);
+    document.documentElement.style.setProperty("--theme-r", `${endRadius}px`);
+    document.documentElement.classList.add("theme-transition");
+
     const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(isDark ? "light" : "dark");
       });
     });
 
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        [
-          { clipPath: `circle(0px at ${x}px ${y}px)` },
-          { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
-        ],
-        {
-          duration: 400,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
+    transition.finished.then(() => {
+      document.documentElement.classList.remove("theme-transition");
+      document.documentElement.style.removeProperty("--theme-x");
+      document.documentElement.style.removeProperty("--theme-y");
+      document.documentElement.style.removeProperty("--theme-r");
     });
   };
 

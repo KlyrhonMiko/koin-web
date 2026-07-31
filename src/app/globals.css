@@ -148,3 +148,16 @@ html.lenis body {
 ::view-transition-old(root) {
   z-index: -1;
 }
+
+html.theme-transition::view-transition-new(root) {
+  animation: theme-reveal 400ms ease-in-out;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--theme-r, 100%) at var(--theme-x, 50%) var(--theme-y, 50%));
+  }
+}
