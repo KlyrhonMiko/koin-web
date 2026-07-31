@@ -34,11 +34,18 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       return;
     }
 
-    const rect = event.currentTarget.getBoundingClientRect();
-    let x = Math.round(rect.left + rect.width / 2);
-    let y = Math.round(rect.top + rect.height / 2);
+    let x = event.clientX;
+    let y = event.clientY;
 
-    // Fallback: If coordinates evaluate to near (0,0), fallback to top-right corner where toggler lives
+    if (!x || !y || (x === 0 && y === 0)) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+
+    x = Math.round(x);
+    y = Math.round(y);
+
     if (x <= 5 && y <= 5) {
       x = Math.round(window.innerWidth - 40);
       y = 40;
@@ -51,22 +58,30 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       )
     );
 
-    document.documentElement.style.setProperty("--theme-x", `${x}px`);
-    document.documentElement.style.setProperty("--theme-y", `${y}px`);
-    document.documentElement.style.setProperty("--theme-r", `${endRadius}px`);
-    document.documentElement.classList.add("theme-transition");
-
     const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(isDark ? "light" : "dark");
       });
     });
 
-    transition.finished.then(() => {
-      document.documentElement.classList.remove("theme-transition");
-      document.documentElement.style.removeProperty("--theme-x");
-      document.documentElement.style.removeProperty("--theme-y");
-      document.documentElement.style.removeProperty("--theme-r");
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        [
+          { 
+            clipPath: `circle(0px at ${x}px ${y}px)`,
+            webkitClipPath: `circle(0px at ${x}px ${y}px)`
+          },
+          { 
+            clipPath: `circle(${endRadius}px at ${x}px ${y}px)`,
+            webkitClipPath: `circle(${endRadius}px at ${x}px ${y}px)`
+          }
+        ],
+        {
+          duration: 400,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
     });
   };
 
