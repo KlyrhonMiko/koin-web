@@ -103,10 +103,10 @@ export default function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: "easeOut" }}
-                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-6 sm:py-10 border-b border-border/50 last:border-0 hover:bg-surface-elevated/40 transition-colors duration-500 rounded-3xl sm:-mx-6 sm:px-6"
+                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-6 sm:py-10 border-b border-border/50 last:border-0 hover:bg-surface-elevated/40 transition-colors duration-500 sm:rounded-3xl sm:-mx-6 sm:px-6"
               >
                 {/* Subtle Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 sm:rounded-3xl pointer-events-none" />
                 
                 {/* Icon Container */}
                 <div className="relative z-10 shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-muted group-hover:text-primary group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(46,217,155,0.2)] group-hover:border-primary/20 transition-all duration-500">
