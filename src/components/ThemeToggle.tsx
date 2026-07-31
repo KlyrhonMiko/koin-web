@@ -29,16 +29,23 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    if (!document.startViewTransition) {
+      setTheme(isDark ? "light" : "dark");
+      return;
+    }
 
-    const endRadius = Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = Math.round(rect.left + rect.width / 2);
+    const y = Math.round(rect.top + rect.height / 2);
+
+    const endRadius = Math.ceil(
+      Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y)
+      )
     );
 
-    const transition = (document as any).startViewTransition(() => {
+    const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(isDark ? "light" : "dark");
       });
