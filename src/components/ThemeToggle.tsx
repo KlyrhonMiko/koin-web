@@ -35,13 +35,19 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     }
 
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = Math.round(rect.left + rect.width / 2);
-    const y = Math.round(rect.top + rect.height / 2);
+    let x = Math.round(rect.left + rect.width / 2);
+    let y = Math.round(rect.top + rect.height / 2);
+
+    // Fallback: If coordinates evaluate to near (0,0), fallback to top-right corner where toggler lives
+    if (x <= 5 && y <= 5) {
+      x = Math.round(window.innerWidth - 40);
+      y = 40;
+    }
 
     const endRadius = Math.ceil(
       Math.hypot(
-        Math.max(x, innerWidth - x),
-        Math.max(y, innerHeight - y)
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
       )
     );
 
@@ -52,15 +58,11 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     });
 
     transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ];
-      
       document.documentElement.animate(
-        {
-          clipPath: clipPath,
-        },
+        [
+          { clipPath: `circle(0px at ${x}px ${y}px)` },
+          { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+        ],
         {
           duration: 400,
           easing: "ease-in-out",
