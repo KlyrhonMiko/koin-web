@@ -29,14 +29,9 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
-    let x = event.clientX;
-    let y = event.clientY;
-
-    if (x === 0 && y === 0) {
-      const rect = event.currentTarget.getBoundingClientRect();
-      x = rect.left + rect.width / 2;
-      y = rect.top + rect.height / 2;
-    }
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
     const endRadius = Math.hypot(
       Math.max(x, innerWidth - x),
