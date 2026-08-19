@@ -3,13 +3,12 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Download, ChevronRight } from "lucide-react";
-import { useTheme } from "next-themes";
+
 import Image from "next/image";
 import { track } from '@vercel/analytics';
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -125,11 +124,20 @@ export default function Hero() {
                 className="absolute z-0 top-[2%] -right-[40%] sm:-right-[50%] w-[170px] sm:w-[210px] lg:w-[230px] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border-[3px] sm:border-[4px] border-surface/50 bg-background"
               >
                 <Image
-                  src={resolvedTheme === "dark" ? "/koin/budgets-dark.png" : "/koin/budgets-light.png"}
-                  alt="Budgets"
+                  src="/koin/budgets-light.png"
+                  alt="Budgets (Light)"
                   width={1080}
                   height={2400}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover dark:hidden"
+                  priority
+                  unoptimized
+                />
+                <Image
+                  src="/koin/budgets-dark.png"
+                  alt="Budgets (Dark)"
+                  width={1080}
+                  height={2400}
+                  className="w-full h-auto object-cover hidden dark:block"
                   priority
                   unoptimized
                 />
@@ -147,11 +155,20 @@ export default function Hero() {
                 className="absolute z-20 bottom-[4%] -left-[40%] sm:-left-[50%] w-[170px] sm:w-[210px] lg:w-[230px] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] sm:border-[4px] border-surface/50 bg-background"
               >
                 <Image
-                  src={resolvedTheme === "dark" ? "/koin/activity-dark.png" : "/koin/activity-light.png"}
-                  alt="Activity"
+                  src="/koin/activity-light.png"
+                  alt="Activity (Light)"
                   width={1080}
                   height={2400}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover dark:hidden"
+                  priority
+                  unoptimized
+                />
+                <Image
+                  src="/koin/activity-dark.png"
+                  alt="Activity (Dark)"
+                  width={1080}
+                  height={2400}
+                  className="w-full h-auto object-cover hidden dark:block"
                   priority
                   unoptimized
                 />
@@ -171,11 +188,20 @@ export default function Hero() {
                 className="relative z-10 w-full rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] sm:border-[6px] border-surface/80 bg-background"
               >
                 <Image
-                  src={resolvedTheme === "dark" ? "/koin/home-dark.png" : "/koin/home-light.png"}
-                  alt="Home"
+                  src="/koin/home-light.png"
+                  alt="Home (Light)"
                   width={1080}
                   height={2400}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover dark:hidden"
+                  priority
+                  unoptimized
+                />
+                <Image
+                  src="/koin/home-dark.png"
+                  alt="Home (Dark)"
+                  width={1080}
+                  height={2400}
+                  className="w-full h-auto object-cover hidden dark:block"
                   priority
                   unoptimized
                 />
