@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Download, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { track } from '@vercel/analytics';
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -85,6 +86,7 @@ export default function Hero() {
           >
             <a
               href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk"
+              onClick={() => track('Download', { location: 'Hero' })}
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-foreground px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-background transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 w-full sm:w-auto"
             >
               <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

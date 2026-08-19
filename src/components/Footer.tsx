@@ -2,6 +2,7 @@
 
 import { Github, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { track } from '@vercel/analytics';
 
 export default function Footer() {
   return (
@@ -32,6 +33,7 @@ export default function Footer() {
           
           <a
             href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk"
+            onClick={() => track('Download', { location: 'Footer' })}
             className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-10 py-5 text-base font-semibold text-background transition-all duration-300 hover:shadow-[0_0_40px_rgba(46,217,155,0.3)] hover:-translate-y-1"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -5,6 +5,7 @@ import { Github, Download } from 'lucide-react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
+import { track } from '@vercel/analytics';
 
 export default function Navbar() {
   const { scrollY } = useScroll();
@@ -56,6 +57,7 @@ export default function Navbar() {
           {/* CTA */}
           <a 
             href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk" 
+            onClick={() => track('Download', { location: 'Navbar' })}
             className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-semibold text-background transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
           >
             <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
