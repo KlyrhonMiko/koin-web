@@ -6,6 +6,7 @@ import { Download, ChevronRight } from "lucide-react";
 
 import Image from "next/image";
 import { track } from '@vercel/analytics';
+import { APP_LINKS } from '@/constants/links';
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -84,7 +85,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <a
-              href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk"
+              href={APP_LINKS.download}
               onClick={() => track('Download', { location: 'Hero' })}
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-2xl bg-foreground px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-background transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 w-full sm:w-auto"
             >
@@ -95,7 +96,7 @@ export default function Hero() {
               </span>
             </a>
             <a
-              href="https://github.com/KlyrhonMiko/koin"
+              href={APP_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface/50 px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:border-border-hover hover:bg-surface-elevated hover:shadow-lg w-full sm:w-auto"

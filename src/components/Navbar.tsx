@@ -6,6 +6,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 import { track } from '@vercel/analytics';
+import { APP_LINKS } from '@/constants/links';
 
 export default function Navbar() {
   const { scrollY } = useScroll();
@@ -23,26 +24,29 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 lg:pt-6 pointer-events-none"
     >
       <div 
-        className={`flex items-center justify-between w-full max-w-4xl rounded-full border pointer-events-auto transition-all duration-500 ease-out ${
+        className={`pointer-events-auto flex items-center justify-between gap-4 sm:gap-6 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 transition-all duration-300 border ${
           scrolled 
-            ? "bg-surface/80 backdrop-blur-xl border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.12)] py-3 px-6 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]" 
-            : "bg-surface/10 backdrop-blur-sm border-transparent py-4 px-6 shadow-none"
+            ? 'bg-surface/80 dark:bg-[#0c0d0e]/80 backdrop-blur-xl border-border/80 shadow-2xl shadow-black/5 dark:shadow-black/40' 
+            : 'bg-surface/40 dark:bg-[#0c0d0e]/40 backdrop-blur-md border-border/40'
         }`}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-xl font-bold tracking-tighter text-foreground font-logo">Koin</span>
-        </div>
-        
-        {/* Right Side Controls */}
+        {/* Brand */}
+        <Link href="/" className="font-bold text-foreground text-lg sm:text-xl tracking-tight flex items-center gap-2">
+          <span className="font-logo">Koin</span>
+        </Link>
+
+        {/* Links & CTA */}
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Main Links */}
-          <Link href="#features" className="text-xs font-semibold uppercase tracking-widest text-muted hover:text-foreground transition-colors hidden sm:block mr-2">
+          <Link 
+            href="#features" 
+            className="text-xs sm:text-sm text-muted hover:text-foreground font-medium transition-colors hidden sm:block px-2 py-1"
+          >
             Features
           </Link>
           
           {/* Desktop Utilities Pill */}
           <div className="hidden sm:flex items-center rounded-full p-1 border border-border/60 dark:border-white/[0.08] bg-surface-elevated/30">
-            <a href="https://github.com/KlyrhonMiko/koin" target="_blank" rel="noopener noreferrer" className="flex h-8 w-8 items-center justify-center rounded-full text-muted hover:text-foreground hover:bg-surface dark:hover:bg-white/10 transition-colors duration-200">
+            <a href={APP_LINKS.github} target="_blank" rel="noopener noreferrer" className="flex h-8 w-8 items-center justify-center rounded-full text-muted hover:text-foreground hover:bg-surface dark:hover:bg-white/10 transition-colors duration-200">
               <Github className="w-[18px] h-[18px]" />
             </a>
             <div className="w-[1px] h-4 bg-border/80 dark:bg-white/10 mx-1"></div>
@@ -56,7 +60,7 @@ export default function Navbar() {
 
           {/* CTA */}
           <a 
-            href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk" 
+            href={APP_LINKS.download} 
             onClick={() => track('Download', { location: 'Navbar' })}
             className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-4 py-2 sm:px-5 sm:py-2.5 text-xs font-semibold text-background transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
           >

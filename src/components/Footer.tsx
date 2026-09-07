@@ -3,6 +3,7 @@
 import { Github, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { track } from '@vercel/analytics';
+import { APP_LINKS } from '@/constants/links';
 
 export default function Footer() {
   return (
@@ -32,7 +33,7 @@ export default function Footer() {
           </h2>
           
           <a
-            href="https://github.com/KlyrhonMiko/koin/releases/download/v1.1.1/koinv1.1.1.apk"
+            href={APP_LINKS.download}
             onClick={() => track('Download', { location: 'Footer' })}
             className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-foreground px-10 py-5 text-base font-semibold text-background transition-all duration-300 hover:shadow-[0_0_40px_rgba(46,217,155,0.3)] hover:-translate-y-1"
           >
@@ -60,7 +61,7 @@ export default function Footer() {
           {/* Copyright */}
           <p className="text-base text-muted font-medium">
             <a 
-              href="https://github.com/KlyrhonMiko" 
+              href={APP_LINKS.githubProfile} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-foreground hover:text-primary transition-colors underline decoration-border hover:decoration-primary underline-offset-4"
@@ -72,7 +73,7 @@ export default function Footer() {
           {/* Socials */}
           <div className="flex items-center gap-4">
             <a 
-              href="https://github.com/KlyrhonMiko/koin" 
+              href={APP_LINKS.github} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="group glass flex items-center justify-center w-12 h-12 rounded-full text-muted hover:text-foreground transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:-translate-y-1"
