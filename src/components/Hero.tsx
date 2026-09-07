@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -125,7 +125,7 @@ export default function Hero() {
                 className="absolute z-0 top-[2%] -right-[40%] sm:-right-[50%] w-[170px] sm:w-[210px] lg:w-[230px] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border-[3px] sm:border-[4px] border-surface/50 bg-background"
               >
                 <Image
-                  src="/koin/budgets-light.png"
+                  src="/budgets-light.png"
                   alt="Budgets (Light)"
                   width={1080}
                   height={2400}
@@ -134,7 +134,7 @@ export default function Hero() {
                   unoptimized
                 />
                 <Image
-                  src="/koin/budgets-dark.png"
+                  src="/budgets-dark.png"
                   alt="Budgets (Dark)"
                   width={1080}
                   height={2400}
@@ -156,7 +156,7 @@ export default function Hero() {
                 className="absolute z-20 bottom-[4%] -left-[40%] sm:-left-[50%] w-[170px] sm:w-[210px] lg:w-[230px] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] border-[3px] sm:border-[4px] border-surface/50 bg-background"
               >
                 <Image
-                  src="/koin/activity-light.png"
+                  src="/activity-light.png"
                   alt="Activity (Light)"
                   width={1080}
                   height={2400}
@@ -165,7 +165,7 @@ export default function Hero() {
                   unoptimized
                 />
                 <Image
-                  src="/koin/activity-dark.png"
+                  src="/activity-dark.png"
                   alt="Activity (Dark)"
                   width={1080}
                   height={2400}
@@ -189,7 +189,7 @@ export default function Hero() {
                 className="relative z-10 w-full rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] border-[4px] sm:border-[6px] border-surface/80 bg-background"
               >
                 <Image
-                  src="/koin/home-light.png"
+                  src="/home-light.png"
                   alt="Home (Light)"
                   width={1080}
                   height={2400}
@@ -198,7 +198,7 @@ export default function Hero() {
                   unoptimized
                 />
                 <Image
-                  src="/koin/home-dark.png"
+                  src="/home-dark.png"
                   alt="Home (Dark)"
                   width={1080}
                   height={2400}
@@ -215,3 +215,4 @@ export default function Hero() {
     </section>
   );
 }
+

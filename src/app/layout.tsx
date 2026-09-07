@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
@@ -21,21 +21,21 @@ export const metadata: Metadata = {
         ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
         : process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
-        : "https://koin-web-two.vercel.app")
+        : "https://koin.klyrhon.tech")
   ),
   title: "Koin | Your finances, simplified.",
   description:
     "Koin is a sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money.",
   icons: {
     icon: [
-      { url: "/koin/icon-48x48.png", sizes: "48x48", type: "image/png" },
-      { url: "/koin/icon-96x96.png", sizes: "96x96", type: "image/png" },
-      { url: "/koin/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [
-      { url: "/koin/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/koin/favicon.ico",
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -62,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+
