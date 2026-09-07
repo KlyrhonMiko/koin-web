@@ -15,12 +15,27 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://koin-web-two.vercel.app")
+  ),
   title: "Koin | Your finances, simplified.",
-  description: "Koin is a sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money.",
+  description:
+    "Koin is a sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money.",
   icons: {
-    icon: "/koin/logo.png?v=2",
-    shortcut: "/koin/favicon.ico?v=2",
-    apple: "/koin/logo.png?v=2",
+    icon: [
+      { url: "/koin/icon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/koin/icon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/koin/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/koin/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/koin/favicon.ico",
   },
 };
 
