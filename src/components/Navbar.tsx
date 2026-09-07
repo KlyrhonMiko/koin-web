@@ -24,7 +24,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 lg:pt-6 pointer-events-none"
     >
       <div 
-        className={`pointer-events-auto flex items-center justify-between gap-4 sm:gap-6 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 transition-all duration-300 border ${
+        className={`pointer-events-auto flex items-center justify-between w-full max-w-4xl gap-4 sm:gap-6 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 transition-all duration-300 border ${
           scrolled 
             ? 'bg-surface/80 dark:bg-[#0c0d0e]/80 backdrop-blur-xl border-border/80 shadow-2xl shadow-black/5 dark:shadow-black/40' 
             : 'bg-surface/40 dark:bg-[#0c0d0e]/40 backdrop-blur-md border-border/40'
