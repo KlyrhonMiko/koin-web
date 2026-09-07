@@ -17,6 +17,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Koin | Your finances, simplified.",
   description: "Koin is a sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money.",
+  icons: {
+    icon: "/koin/logo.png?v=2",
+    shortcut: "/koin/favicon.ico?v=2",
+    apple: "/koin/logo.png?v=2",
+  },
 };
 
 export default function RootLayout({

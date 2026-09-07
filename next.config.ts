@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
         basePath: false,
         permanent: false,
       },
+      {
+        source: '/favicon.ico',
+        destination: '/koin/favicon.ico',
+        basePath: false,
+        permanent: false,
+      },
+      {
+        source: '/logo.png',
+        destination: '/koin/logo.png',
+        basePath: false,
+        permanent: false,
+      },
     ];
   },
 };
