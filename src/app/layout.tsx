@@ -1,7 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import SmoothScrolling from "@/components/SmoothScrolling";
+
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Analytics } from "@vercel/analytics/next";
 const outfit = Outfit({
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ),
   title: "Koin | Your finances, simplified.",
   description:
-    "Koin is a sophisticated personal finance tracker built with Flutter, designed to offer a premium and effortless experience for managing your money.",
+    "Bring your accounts, spending, budgets, and savings together with Koin. A personal finance app for Android that keeps financial records on your device.",
   icons: {
     icon: [
       { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
@@ -49,17 +49,18 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <SmoothScrolling>
+          
             {children}
-          </SmoothScrolling>
+          
         </ThemeProvider>
         <Analytics />
       </body>
     </html>
   );
 }
+
 

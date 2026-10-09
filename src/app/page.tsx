@@ -4,14 +4,5 @@ import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <Hero />
-        <Features />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <><a className="skip-link" href="#main">Skip to content</a><Navbar /><main id="main"><Hero /><Features /></main><Footer /></>;
 }

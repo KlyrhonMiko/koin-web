@@ -1,133 +1,24 @@
 "use client";
 
-import { Wallet, PieChart, Sparkles, LineChart, Target, Tags, Palette, Shield, Coins, Zap, Activity } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { ArrowUpRight, Wallet, ChartNoAxesCombined, PiggyBank, CalendarDays, ScanLine, FolderLock, SlidersHorizontal } from "lucide-react";
+import AppScreen from "./AppScreen";
+import { APP_LINKS } from "@/constants/links";
 
-const features = [
-  {
-    icon: <Wallet className="w-6 h-6" />,
-    title: "Multi-Account",
-    description: "Effortlessly track cash, bank accounts, and savings in one place."
-  },
-  {
-    icon: <PieChart className="w-6 h-6" />,
-    title: "Dynamic Dashboard",
-    description: "Beautiful, interactive charts and real-time summaries of your money."
-  },
-  {
-    icon: <Sparkles className="w-6 h-6" />,
-    title: "Premium Visuals",
-    description: "Sophisticated experience with glow and particle effects."
-  },
-  {
-    icon: <LineChart className="w-6 h-6" />,
-    title: "Smart Analysis",
-    description: "Deep expense breakdowns and flexible time-frame filtering."
-  },
-  {
-    icon: <Target className="w-6 h-6" />,
-    title: "Savings Tracker",
-    description: "Set, visualize, and achieve your financial goals seamlessly."
-  },
-  {
-    icon: <Tags className="w-6 h-6" />,
-    title: "Categorized",
-    description: "Organize expenses with customizable categories and labels."
-  },
-  {
-    icon: <Palette className="w-6 h-6" />,
-    title: "Personalized Themes",
-    description: "Switch between Dark and Light modes with vibrant accents."
-  },
-  {
-    icon: <Shield className="w-6 h-6" />,
-    title: "Private & Secure",
-    description: "Your data stays entirely on your device using local SQLite."
-  },
-  {
-    icon: <Coins className="w-6 h-6" />,
-    title: "Smart Budgets",
-    description: "Set limits and keep your spending perfectly on track without stress."
-  },
-  {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Quick Entry",
-    description: "Tap income or expense cards for instant, frictionless transaction recording."
-  },
-  {
-    icon: <Activity className="w-6 h-6" />,
-    title: "Activity-First",
-    description: "Start your day with financial awareness. The app opens directly to your analysis."
-  }
+const views = [
+  { name: "Accounts", icon: Wallet, screen: "accounts", title: "See the whole picture.", description: "Cash, bank accounts, and e-wallets. Keep balances together and record transfers without losing track.", detail: "One place for the money you manage." },
+  { name: "Activity", icon: ChartNoAxesCombined, screen: "activity", title: "Understand your everyday.", description: "Follow spending trends, compare periods, and find the transactions behind the numbers.", detail: "Turn your transaction history into useful insight." },
+  { name: "Budgets", icon: PiggyBank, screen: "budgets", title: "Make room for what matters.", description: "Set category budgets and see how much is left, so your next spending decision feels a little clearer.", detail: "A plan you can check in on, every day." },
 ];
 
 export default function Features() {
-  return (
-    <section id="features" className="py-16 sm:py-24 md:py-32 px-6 relative bg-background">
-      
-      {/* Ambient background glows wrapper to prevent breaking sticky layout */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[20%] right-0 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-accent/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] left-0 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-24">
-          
-          {/* Left Column (Sticky Header) */}
-          <div className="lg:w-1/3">
-            <div className="lg:sticky lg:top-40 h-fit">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6 leading-tight">
-                  Beyond <br className="hidden lg:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">ordinary.</span>
-                </h2>
-                <p className="text-lg text-muted max-w-md">
-                  Koin provides all the tools to take control of your financial future without compromising on design. No clutter, just clarity.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Right Column (Feature Rows) */}
-          <div className="lg:w-2/3 flex flex-col pt-8 lg:pt-0">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: "easeOut" }}
-                className="group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-6 sm:py-10 border-b border-border/50 last:border-0 hover:bg-surface-elevated/40 transition-colors duration-500 sm:rounded-3xl sm:-mx-6 sm:px-6"
-              >
-                {/* Subtle Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 sm:rounded-3xl pointer-events-none" />
-                
-                {/* Icon Container */}
-                <div className="relative z-10 shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl glass flex items-center justify-center text-muted group-hover:text-primary group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(46,217,155,0.2)] group-hover:border-primary/20 transition-all duration-500">
-                  {feature.icon}
-                </div>
-                
-                {/* Text Content */}
-                <div className="relative z-10 flex-1">
-                  <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted text-base sm:text-lg leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </div>
+  const [active, setActive] = useState(0);
+  const view = views[active];
+  return <>
+    <section id="features" className="container features-section"><div className="section-heading"><p className="eyebrow">Less guesswork. More understanding.</p><h2>Everything adds up<br />to a clearer picture.</h2><p>From your first coffee to your next big goal, give every part of your finances a place.</p></div>
+      <div className="feature-showcase"><div className="feature-info"><div className="feature-tabs" role="tablist" aria-label="Explore Koin features">{views.map((item, i) => <button key={item.name} id={`tab-${item.screen}`} role="tab" aria-selected={active === i} aria-controls="feature-panel" tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={event => { const next = event.key === "ArrowRight" ? (i + 1) % views.length : event.key === "ArrowLeft" ? (i + views.length - 1) % views.length : event.key === "Home" ? 0 : event.key === "End" ? views.length - 1 : null; if (next !== null) { event.preventDefault(); setActive(next); document.getElementById(`tab-${views[next].screen}`)?.focus(); } }}><item.icon size={17} aria-hidden="true" />{item.name}</button>)}</div><div id="feature-panel" role="tabpanel" aria-labelledby={`tab-${view.screen}`} tabIndex={0} key={view.screen} className="feature-panel"><h3>{view.title}</h3><p>{view.description}</p><span className="feature-detail">{view.detail}</span></div><a href={APP_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-link">Take a closer look on GitHub <ArrowUpRight size={17} aria-hidden="true" /></a></div><div className="feature-visual" key={view.name}><AppScreen screen={view.screen} alt={`Koin ${view.name.toLowerCase()} screen`} /></div></div>
+      <div className="capabilities"><article><CalendarDays /><h3>Look a little further ahead.</h3><p>Organize recurring payments, track debts, and plan for savings goals alongside your everyday spending.</p></article><article><ScanLine /><h3>Less effort. More up to date.</h3><p>Record entries with voice input, suggestions from your history, or Android Quick Settings.</p></article></div>
     </section>
-  );
+    <section className="container privacy-section"><div className="privacy-symbol"><FolderLock size={54} strokeWidth={1.2} aria-hidden="true" /></div><div className="privacy-copy"><h2>Personal finance.<br />Kept personal.</h2><p>Your financial records and category learning stay on your device. Local recovery copies and manual exports help you keep a backup.</p><a className="text-link" href={`${APP_LINKS.github}#your-data`} target="_blank" rel="noopener noreferrer">Read about your data <ArrowUpRight size={17} aria-hidden="true" /></a></div><div className="personal-note"><SlidersHorizontal size={23} aria-hidden="true" /><h3>Feels like your space.</h3><p>Light or dark. Your choice of accent. Make Koin feel right for you.</p></div></section>
+  </>;
 }
